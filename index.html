@@ -1,3 +1,53 @@
+// Prepare data for Google Sheets (background sync)
+            const sheetData = {
+                'Date Added': data.dateAdded,
+                'Time Added': data.timeAdded,
+                'Full Reference': data.fullReference,
+                'Title': data.title,
+                'Authors': data.authors,
+                'Year': data.year,
+                'DOI/URL': data.doi,
+                'Purpose of Study': data.purposeOfStudy,
+                'Purpose Pages': data.purposePages,
+                'question1': data.question1,
+                'question1Pages': data.question1Pages,
+                'question2': data.question2,
+                'question2Pages': data.question2Pages,
+                'question3': data.question3,
+                'question3Pages': data.question3Pages,
+                'question4': data.question4,
+                'question4Pages': data.question4Pages,
+                'question5': data.question5,
+                'question5Pages': data.question5Pages,
+                'Methodology': data.methodology,
+                'Methodology Pages': data.methodologyPages,
+                'Sample/Context': data.sampleContext,
+                'Sample Pages': data.samplePages,
+                'finding1': data.finding1,
+                'finding1Pages': data.finding1Pages,
+                'finding2': data.finding2,
+                'finding2Pages': data.finding2Pages,
+                'finding3': data.finding3,
+                'finding3Pages': data.finding3Pages,
+                'finding4': data.finding4,
+                'finding4Pages': data.finding4Pages,
+                'finding5': data.finding5,
+                'finding5Pages': data.finding5Pages,
+                'Theoretical Framework': data.theoreticalFramework,
+                'Framework Pages': data.frameworkPages,
+                'relevance1': data.relevance1,
+                'relevance1Pages': data.relevance1Pages,
+                'relevance1Notes': data.relevance1Notes,
+                'relevance2': data.relevance2,
+                'relevance2Pages': data.relevance2Pages,
+                'relevance2Notes': data.relevance2Notes,
+                'relevance3': data.relevance3,
+                'relevance3Pages': data.relevance3Pages,
+                'relevance3Notes': data.relevance3Notes,
+                'relevance4': data.relevance4,
+                'relevance4Pages': data.relevance4Pages,
+                'relevance4Notes': data.relevance4Notes,
+                'relevance5': data.relevance5
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,13 +366,60 @@
                     </div>
                 </div>
 
+                <!-- Research Questions - 5 sections -->
+                <h4 style="color: #2c3e50; margin: 20px 0 15px 0; font-size: 1.1em;">❓ Research Questions</h4>
+                
                 <div class="form-group">
-                    <label for="researchQuestions">Research Questions</label>
+                    <label for="question1">Research Question 1</label>
                     <div class="content-with-page">
-                        <textarea id="researchQuestions" name="researchQuestions" placeholder="What are the specific research questions or hypotheses addressed?"></textarea>
+                        <textarea id="question1" name="question1" placeholder="First specific research question or hypothesis..."></textarea>
                         <div class="page-group">
-                            <label for="questionsPages">Page(s)</label>
-                            <input type="text" id="questionsPages" name="questionsPages" class="page-input" placeholder="e.g. 3-4">
+                            <label for="question1Pages">Page(s)</label>
+                            <input type="text" id="question1Pages" name="question1Pages" class="page-input" placeholder="e.g. 2-3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="question2">Research Question 2</label>
+                    <div class="content-with-page">
+                        <textarea id="question2" name="question2" placeholder="Second specific research question or hypothesis..."></textarea>
+                        <div class="page-group">
+                            <label for="question2Pages">Page(s)</label>
+                            <input type="text" id="question2Pages" name="question2Pages" class="page-input" placeholder="e.g. 3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="question3">Research Question 3</label>
+                    <div class="content-with-page">
+                        <textarea id="question3" name="question3" placeholder="Third specific research question or hypothesis..."></textarea>
+                        <div class="page-group">
+                            <label for="question3Pages">Page(s)</label>
+                            <input type="text" id="question3Pages" name="question3Pages" class="page-input" placeholder="e.g. 3-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="question4">Research Question 4</label>
+                    <div class="content-with-page">
+                        <textarea id="question4" name="question4" placeholder="Fourth specific research question or hypothesis..."></textarea>
+                        <div class="page-group">
+                            <label for="question4Pages">Page(s)</label>
+                            <input type="text" id="question4Pages" name="question4Pages" class="page-input" placeholder="e.g. 4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="question5">Research Question 5</label>
+                    <div class="content-with-page">
+                        <textarea id="question5" name="question5" placeholder="Fifth specific research question or hypothesis..."></textarea>
+                        <div class="page-group">
+                            <label for="question5Pages">Page(s)</label>
+                            <input type="text" id="question5Pages" name="question5Pages" class="page-input" placeholder="e.g. 4-5">
                         </div>
                     </div>
                 </div>
@@ -349,13 +446,60 @@
                     </div>
                 </div>
 
+                <!-- Key Findings - 5 sections -->
+                <h4 style="color: #2c3e50; margin: 20px 0 15px 0; font-size: 1.1em;">🔍 Key Findings</h4>
+                
                 <div class="form-group">
-                    <label for="keyFindings">Key Findings <span class="required">*</span></label>
+                    <label for="finding1">Key Finding 1 <span class="required">*</span></label>
                     <div class="content-with-page">
-                        <textarea id="keyFindings" name="keyFindings" placeholder="Main results, discoveries, outcomes, significant findings..." required></textarea>
+                        <textarea id="finding1" name="finding1" placeholder="First major finding, result, or discovery..." required></textarea>
                         <div class="page-group">
-                            <label for="findingsPages">Page(s)</label>
-                            <input type="text" id="findingsPages" name="findingsPages" class="page-input" placeholder="e.g. 10-15">
+                            <label for="finding1Pages">Page(s)</label>
+                            <input type="text" id="finding1Pages" name="finding1Pages" class="page-input" placeholder="e.g. 10-12">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="finding2">Key Finding 2</label>
+                    <div class="content-with-page">
+                        <textarea id="finding2" name="finding2" placeholder="Second major finding, result, or discovery..."></textarea>
+                        <div class="page-group">
+                            <label for="finding2Pages">Page(s)</label>
+                            <input type="text" id="finding2Pages" name="finding2Pages" class="page-input" placeholder="e.g. 12-14">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="finding3">Key Finding 3</label>
+                    <div class="content-with-page">
+                        <textarea id="finding3" name="finding3" placeholder="Third major finding, result, or discovery..."></textarea>
+                        <div class="page-group">
+                            <label for="finding3Pages">Page(s)</label>
+                            <input type="text" id="finding3Pages" name="finding3Pages" class="page-input" placeholder="e.g. 14-16">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="finding4">Key Finding 4</label>
+                    <div class="content-with-page">
+                        <textarea id="finding4" name="finding4" placeholder="Fourth major finding, result, or discovery..."></textarea>
+                        <div class="page-group">
+                            <label for="finding4Pages">Page(s)</label>
+                            <input type="text" id="finding4Pages" name="finding4Pages" class="page-input" placeholder="e.g. 16-18">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="finding5">Key Finding 5</label>
+                    <div class="content-with-page">
+                        <textarea id="finding5" name="finding5" placeholder="Fifth major finding, result, or discovery..."></textarea>
+                        <div class="page-group">
+                            <label for="finding5Pages">Page(s)</label>
+                            <input type="text" id="finding5Pages" name="finding5Pages" class="page-input" placeholder="e.g. 18-20">
                         </div>
                     </div>
                 </div>
@@ -371,35 +515,171 @@
                     </div>
                 </div>
 
+                <!-- Relevance to My Study - 5 sections -->
+                <h4 style="color: #2c3e50; margin: 20px 0 15px 0; font-size: 1.1em;">📎 Relevance to My Study</h4>
+                
                 <div class="form-group">
-                    <label for="relevanceToStudy">Relevance to My Study</label>
+                    <label for="relevance1">Relevance Point 1</label>
                     <div class="content-with-page">
-                        <textarea id="relevanceToStudy" name="relevanceToStudy" placeholder="How does this paper relate to your research? Connections, implications..."></textarea>
+                        <textarea id="relevance1" name="relevance1" placeholder="First key relevance or connection to your research..."></textarea>
                         <div class="page-group">
-                            <label for="relevancePages">Page(s)</label>
-                            <input type="text" id="relevancePages" name="relevancePages" class="page-input" placeholder="e.g. All">
+                            <label for="relevance1Pages">Page(s)</label>
+                            <input type="text" id="relevance1Pages" name="relevance1Pages" class="page-input" placeholder="e.g. 5-7">
+                        </div>
+                    </div>
+                    <textarea style="margin-top: 10px;" id="relevance1Notes" name="relevance1Notes" placeholder="Additional notes for this relevance point..." rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="relevance2">Relevance Point 2</label>
+                    <div class="content-with-page">
+                        <textarea id="relevance2" name="relevance2" placeholder="Second key relevance or connection..."></textarea>
+                        <div class="page-group">
+                            <label for="relevance2Pages">Page(s)</label>
+                            <input type="text" id="relevance2Pages" name="relevance2Pages" class="page-input" placeholder="e.g. 8-10">
+                        </div>
+                    </div>
+                    <textarea style="margin-top: 10px;" id="relevance2Notes" name="relevance2Notes" placeholder="Additional notes for this relevance point..." rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="relevance3">Relevance Point 3</label>
+                    <div class="content-with-page">
+                        <textarea id="relevance3" name="relevance3" placeholder="Third key relevance or connection..."></textarea>
+                        <div class="page-group">
+                            <label for="relevance3Pages">Page(s)</label>
+                            <input type="text" id="relevance3Pages" name="relevance3Pages" class="page-input" placeholder="e.g. 12-15">
+                        </div>
+                    </div>
+                    <textarea style="margin-top: 10px;" id="relevance3Notes" name="relevance3Notes" placeholder="Additional notes for this relevance point..." rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="relevance4">Relevance Point 4</label>
+                    <div class="content-with-page">
+                        <textarea id="relevance4" name="relevance4" placeholder="Fourth key relevance or connection..."></textarea>
+                        <div class="page-group">
+                            <label for="relevance4Pages">Page(s)</label>
+                            <input type="text" id="relevance4Pages" name="relevance4Pages" class="page-input" placeholder="e.g. 16-18">
+                        </div>
+                    </div>
+                    <textarea style="margin-top: 10px;" id="relevance4Notes" name="relevance4Notes" placeholder="Additional notes for this relevance point..." rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="relevance5">Relevance Point 5</label>
+                    <div class="content-with-page">
+                        <textarea id="relevance5" name="relevance5" placeholder="Fifth key relevance or connection..."></textarea>
+                        <div class="page-group">
+                            <label for="relevance5Pages">Page(s)</label>
+                            <input type="text" id="relevance5Pages" name="relevance5Pages" class="page-input" placeholder="e.g. 20-22">
+                        </div>
+                    </div>
+                    <textarea style="margin-top: 10px;" id="relevance5Notes" name="relevance5Notes" placeholder="Additional notes for this relevance point..." rows="2"></textarea>
+                </div>
+
+                <!-- Notes/Quotes - 5 sections -->
+                <h4 style="color: #2c3e50; margin: 20px 0 15px 0; font-size: 1.1em;">📝 Notes & Quotes</h4>
+                
+                <div class="form-group">
+                    <label for="notes1">Note/Quote 1</label>
+                    <div class="content-with-page">
+                        <textarea id="notes1" name="notes1" placeholder="First important note, quote, or observation..."></textarea>
+                        <div class="page-group">
+                            <label for="notes1Pages">Page(s)</label>
+                            <input type="text" id="notes1Pages" name="notes1Pages" class="page-input" placeholder="e.g. 3">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="notesQuotes">Notes/Quotes</label>
+                    <label for="notes2">Note/Quote 2</label>
                     <div class="content-with-page">
-                        <textarea id="notesQuotes" name="notesQuotes" placeholder="Important quotes, specific notes, interesting observations..."></textarea>
+                        <textarea id="notes2" name="notes2" placeholder="Second important note, quote, or observation..."></textarea>
                         <div class="page-group">
-                            <label for="notesPages">Page(s)</label>
-                            <input type="text" id="notesPages" name="notesPages" class="page-input" placeholder="e.g. Various">
+                            <label for="notes2Pages">Page(s)</label>
+                            <input type="text" id="notes2Pages" name="notes2Pages" class="page-input" placeholder="e.g. 7">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="critiquesLimitations">Critiques/Limitations</label>
+                    <label for="notes3">Note/Quote 3</label>
                     <div class="content-with-page">
-                        <textarea id="critiquesLimitations" name="critiquesLimitations" placeholder="Study limitations, methodological concerns, areas for improvement..."></textarea>
+                        <textarea id="notes3" name="notes3" placeholder="Third important note, quote, or observation..."></textarea>
                         <div class="page-group">
-                            <label for="critiquesPages">Page(s)</label>
-                            <input type="text" id="critiquesPages" name="critiquesPages" class="page-input" placeholder="e.g. 16-17">
+                            <label for="notes3Pages">Page(s)</label>
+                            <input type="text" id="notes3Pages" name="notes3Pages" class="page-input" placeholder="e.g. 12">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes4">Note/Quote 4</label>
+                    <div class="content-with-page">
+                        <textarea id="notes4" name="notes4" placeholder="Fourth important note, quote, or observation..."></textarea>
+                        <div class="page-group">
+                            <label for="notes4Pages">Page(s)</label>
+                            <input type="text" id="notes4Pages" name="notes4Pages" class="page-input" placeholder="e.g. 16">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes5">Note/Quote 5</label>
+                    <div class="content-with-page">
+                        <textarea id="notes5" name="notes5" placeholder="Fifth important note, quote, or observation..."></textarea>
+                        <div class="page-group">
+                            <label for="notes5Pages">Page(s)</label>
+                            <input type="text" id="notes5Pages" name="notes5Pages" class="page-input" placeholder="e.g. 20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitations - 3 sections -->
+                <h4 style="color: #2c3e50; margin: 20px 0 15px 0; font-size: 1.1em;">⚠️ Limitations</h4>
+                
+                <div class="form-group">
+                    <label for="limitation1">Limitation 1</label>
+                    <div class="content-with-page">
+                        <textarea id="limitation1" name="limitation1" placeholder="First study limitation, methodological concern, or area for improvement..."></textarea>
+                        <div class="page-group">
+                            <label for="limitation1Pages">Page(s)</label>
+                            <input type="text" id="limitation1Pages" name="limitation1Pages" class="page-input" placeholder="e.g. 16-17">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="limitation2">Limitation 2</label>
+                    <div class="content-with-page">
+                        <textarea id="limitation2" name="limitation2" placeholder="Second study limitation, methodological concern, or area for improvement..."></textarea>
+                        <div class="page-group">
+                            <label for="limitation2Pages">Page(s)</label>
+                            <input type="text" id="limitation2Pages" name="limitation2Pages" class="page-input" placeholder="e.g. 17">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="limitation3">Limitation 3</label>
+                    <div class="content-with-page">
+                        <textarea id="limitation3" name="limitation3" placeholder="Third study limitation, methodological concern, or area for improvement..."></textarea>
+                        <div class="page-group">
+                            <label for="limitation3Pages">Page(s)</label>
+                            <input type="text" id="limitation3Pages" name="limitation3Pages" class="page-input" placeholder="e.g. 17-18">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Reflections -->
+                <div class="form-group">
+                    <label for="reflections">Personal Reflections</label>
+                    <div class="content-with-page">
+                        <textarea id="reflections" name="reflections" class="textarea-large" placeholder="Your personal thoughts, insights, connections to other work, critique, implications for your research, overall assessment..."></textarea>
+                        <div class="page-group">
+                            <label for="reflectionsPages">Page(s)</label>
+                            <input type="text" id="reflectionsPages" name="reflectionsPages" class="page-input" placeholder="e.g. All">
                         </div>
                     </div>
                 </div>
@@ -529,22 +809,65 @@
                 'DOI/URL': data.doi,
                 'Purpose of Study': data.purposeOfStudy,
                 'Purpose Pages': data.purposePages,
-                'Research Questions': data.researchQuestions,
-                'Questions Pages': data.questionsPages,
+                'question1': data.question1,
+                'question1Pages': data.question1Pages,
+                'question2': data.question2,
+                'question2Pages': data.question2Pages,
+                'question3': data.question3,
+                'question3Pages': data.question3Pages,
+                'question4': data.question4,
+                'question4Pages': data.question4Pages,
+                'question5': data.question5,
+                'question5Pages': data.question5Pages,
                 'Methodology': data.methodology,
                 'Methodology Pages': data.methodologyPages,
                 'Sample/Context': data.sampleContext,
                 'Sample Pages': data.samplePages,
-                'Key Findings': data.keyFindings,
-                'Findings Pages': data.findingsPages,
+                'finding1': data.finding1,
+                'finding1Pages': data.finding1Pages,
+                'finding2': data.finding2,
+                'finding2Pages': data.finding2Pages,
+                'finding3': data.finding3,
+                'finding3Pages': data.finding3Pages,
+                'finding4': data.finding4,
+                'finding4Pages': data.finding4Pages,
+                'finding5': data.finding5,
+                'finding5Pages': data.finding5Pages,
                 'Theoretical Framework': data.theoreticalFramework,
                 'Framework Pages': data.frameworkPages,
-                'Relevance to My Study': data.relevanceToStudy,
-                'Relevance Pages': data.relevancePages,
-                'Notes/Quotes': data.notesQuotes,
-                'Notes Pages': data.notesPages,
-                'Critiques/Limitations': data.critiquesLimitations,
-                'Critiques Pages': data.critiquesPages,
+                'relevance1': data.relevance1,
+                'relevance1Pages': data.relevance1Pages,
+                'relevance1Notes': data.relevance1Notes,
+                'relevance2': data.relevance2,
+                'relevance2Pages': data.relevance2Pages,
+                'relevance2Notes': data.relevance2Notes,
+                'relevance3': data.relevance3,
+                'relevance3Pages': data.relevance3Pages,
+                'relevance3Notes': data.relevance3Notes,
+                'relevance4': data.relevance4,
+                'relevance4Pages': data.relevance4Pages,
+                'relevance4Notes': data.relevance4Notes,
+                'relevance5': data.relevance5,
+                'relevance5Pages': data.relevance5Pages,
+                'relevance5Notes': data.relevance5Notes,
+                'notes1': data.notes1,
+                'notes1Pages': data.notes1Pages,
+                'notes2': data.notes2,
+                'notes2Pages': data.notes2Pages,
+                'notes3': data.notes3,
+                'notes3Pages': data.notes3Pages,
+                'notes4': data.notes4,
+                'notes4Pages': data.notes4Pages,
+                'notes5': data.notes5,
+                'notes5Pages': data.notes5Pages,
+                'limitation1': data.limitation1,
+                'limitation1Pages': data.limitation1Pages,
+                'limitation2': data.limitation2,
+                'limitation2Pages': data.limitation2Pages,
+                'limitation3': data.limitation3,
+                'limitation3Pages': data.limitation3Pages,
+                'reflections': data.reflections,
+                'reflectionsPages': data.reflectionsPages,
                 'Keywords/Tags': data.keywordsTags,
                 'Auto-Generated Citation': data.autoGeneratedCitation
             };
