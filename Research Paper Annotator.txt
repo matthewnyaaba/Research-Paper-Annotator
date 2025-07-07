@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathew Nyaaba's Library Descriptions - Research Paper Annotator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .page-input {
+            width: 80px !important;
+            text-align: center;
+            flex: none !important;
+        }
+
+        .content-with-page {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .content-with-page textarea {
+            flex: 1;
+        }
+
+        .content-with-page .page-group {
+            flex: none;
+            width: 100px;
+        }
+
+        .page-group label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .apa-preview {
+            background: linear-gradient(135deg, #e8f4f8, #f0f8ff);
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .apa-preview h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .citation-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .clear-btn {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .clear-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .form-content {
+                padding: 20px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .content-with-page {
+                flex-direction: column;
+            }
+            
+            .content-with-page .page-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Mathew Nyaaba's Library Descriptions</h1>
+            <p>Research Paper Annotator for Academic Literature Review</p>
+        </div>
+
+        <div class="form-content">
+            <form id="paperForm">
+                <!-- Basic Paper Information -->
+                <h3 class="section-title">📄 Paper Information</h3>
+                
+                <div class="form-group">
+                    <label for="fullReference">Full Reference (APA Format) <span class="required">*</span></label>
+                    <textarea id="fullReference" name="fullReference" placeholder="Complete APA citation of the paper..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">Paper Title <span class="required">*</span></label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year <span class="required">*</span></label>
+                        <input type="number" id="year" name="year" min="1900" max="2030" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="authors">Authors <span class="required">*</span></label>
+                        <input type="text" id="authors" name="authors" placeholder="Author names" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doi">DOI/URL</label>
+                        <input type="text" id="doi" name="doi" placeholder="DOI or URL">
+                    </div>
+                </div>
+
+                <!-- Research Analysis Sections -->
+                <h3 class="section-title">🔬 Research Analysis</h3>
+
+                <div class="form-group">
+                    <label for="purposeOfStudy">Purpose of Study</label>
+                    <div class="content-with-page">
+                        <textarea id="purposeOfStudy" name="purposeOfStudy" placeholder="What is the main purpose, aim, or objective of this study?"></textarea>
+                        <div class="page-group">
+                            <label for="purposePages">Page(s)</label>
+                            <input type="text" id="purposePages" name="purposePages" class="page-input" placeholder="e.g. 2-3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="researchQuestions">Research Questions</label>
+                    <div class="content-with-page">
+                        <textarea id="researchQuestions" name="researchQuestions" placeholder="What are the specific research questions or hypotheses addressed?"></textarea>
+                        <div class="page-group">
+                            <label for="questionsPages">Page(s)</label>
+                            <input type="text" id="questionsPages" name="questionsPages" class="page-input" placeholder="e.g. 3-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="methodology">Methodology</label>
+                    <div class="content-with-page">
+                        <textarea id="methodology" name="methodology" placeholder="Research design, data collection methods, analysis techniques, procedures..."></textarea>
+                        <div class="page-group">
+                            <label for="methodologyPages">Page(s)</label>
+                            <input type="text" id="methodologyPages" name="methodologyPages" class="page-input" placeholder="e.g. 5-8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sampleContext">Sample/Context</label>
+                    <div class="content-with-page">
+                        <textarea id="sampleContext" name="sampleContext" placeholder="Sample size, demographics, setting, context, participants..."></textarea>
+                        <div class="page-group">
+                            <label for="samplePages">Page(s)</label>
+                            <input type="text" id="samplePages" name="samplePages" class="page-input" placeholder="e.g. 6-7">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="keyFindings">Key Findings <span class="required">*</span></label>
+                    <div class="content-with-page">
+                        <textarea id="keyFindings" name="keyFindings" placeholder="Main results, discoveries, outcomes, significant findings..." required></textarea>
+                        <div class="page-group">
+                            <label for="findingsPages">Page(s)</label>
+                            <input type="text" id="findingsPages" name="findingsPages" class="page-input" placeholder="e.g. 10-15">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="theoreticalFramework">Theoretical/Conceptual Framework</label>
+                    <div class="content-with-page">
+                        <textarea id="theoreticalFramework" name="theoreticalFramework" placeholder="Theoretical foundations, conceptual models, frameworks used..."></textarea>
+                        <div class="page-group">
+                            <label for="frameworkPages">Page(s)</label>
+                            <input type="text" id="frameworkPages" name="frameworkPages" class="page-input" placeholder="e.g. 2-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="relevanceToStudy">Relevance to My Study</label>
+                    <div class="content-with-page">
+                        <textarea id="relevanceToStudy" name="relevanceToStudy" placeholder="How does this paper relate to your research? Connections, implications..."></textarea>
+                        <div class="page-group">
+                            <label for="relevancePages">Page(s)</label>
+                            <input type="text" id="relevancePages" name="relevancePages" class="page-input" placeholder="e.g. All">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notesQuotes">Notes/Quotes</label>
+                    <div class="content-with-page">
+                        <textarea id="notesQuotes" name="notesQuotes" placeholder="Important quotes, specific notes, interesting observations..."></textarea>
+                        <div class="page-group">
+                            <label for="notesPages">Page(s)</label>
+                            <input type="text" id="notesPages" name="notesPages" class="page-input" placeholder="e.g. Various">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="critiquesLimitations">Critiques/Limitations</label>
+                    <div class="content-with-page">
+                        <textarea id="critiquesLimitations" name="critiquesLimitations" placeholder="Study limitations, methodological concerns, areas for improvement..."></textarea>
+                        <div class="page-group">
+                            <label for="critiquesPages">Page(s)</label>
+                            <input type="text" id="critiquesPages" name="critiquesPages" class="page-input" placeholder="e.g. 16-17">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="keywordsTags">Keywords/Tags</label>
+                    <input type="text" id="keywordsTags" name="keywordsTags" placeholder="Relevant keywords, tags, themes (comma-separated)">
+                </div>
+
+                <!-- APA Citation Preview -->
+                <div class="apa-preview">
+                    <h4>📋 Citation Preview (Auto-generated from Title, Authors, Year):</h4>
+                    <div class="citation-text" id="citationPreview">
+                        Fill in Title, Authors, and Year to see auto-generated APA citation
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span id="submitText">📝 Add to Library</span>
+                    <span id="submitSpinner" class="loading-spinner" style="display: none;"></span>
+                </button>
+
+                <button type="button" class="clear-btn" onclick="clearForm()">
+                    🗑️ Clear Form
+                </button>
+
+                <div id="messageContainer"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Google Apps Script URL for background sync
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGcfJ_Z7rQrjIX2RTO3QCJi9HF4cfb_wpavAK-Cus_lG6mF4v4WlOMKjcOXcEIzu6v_Q/exec';
+        
+        // Initialize the application
+        function init() {
+            updateCitationPreview();
+        }
+
+        // Citation generation
+        function generateAPACitation(data) {
+            const { title, authors, year } = data;
+            
+            if (!title || !authors || !year) {
+                return 'Fill in Title, Authors, and Year to see auto-generated APA citation';
+            }
+            
+            let citation = '';
+            
+            // Format authors
+            const authorList = authors.split(',').map(author => author.trim());
+            if (authorList.length === 1) {
+                citation += authorList[0];
+            } else if (authorList.length === 2) {
+                citation += `${authorList[0]} & ${authorList[1]}`;
+            } else {
+                citation += `${authorList[0]} et al.`;
+            }
+            
+            // Add year and title
+            citation += ` (${year}). ${title}.`;
+            
+            return citation;
+        }
+
+        function updateCitationPreview() {
+            const form = document.getElementById('paperForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            const citation = generateAPACitation(data);
+            document.getElementById('citationPreview').innerHTML = citation;
+        }
+
+        function showMessage(message, type) {
+            const container = document.getElementById('messageContainer');
+            const messageClass = type === 'error' ? 'error-message' : 'success-message';
+            
+            container.innerHTML = `<div class="${messageClass}">${message}</div>`;
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    container.innerHTML = '';
+                }, 5000);
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('paperForm').reset();
+            updateCitationPreview();
+            document.getElementById('messageContainer').innerHTML = '';
+        }
+
+        // Form handling
+        document.getElementById('paperForm').addEventListener('input', updateCitationPreview);
+
+        document.getElementById('paperForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = '📤 Saving to Library...';
+            submitSpinner.style.display = 'inline-block';
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Add metadata
+            data.dateAdded = new Date().toLocaleDateString();
+            data.timeAdded = new Date().toLocaleTimeString();
+            data.autoGeneratedCitation = generateAPACitation(data);
+            
+            // Prepare data for Google Sheets (background sync)
+            const sheetData = {
+                'Date Added': data.dateAdded,
+                'Time Added': data.timeAdded,
+                'Full Reference': data.fullReference,
+                'Title': data.title,
+                'Authors': data.authors,
+                'Year': data.year,
+                'DOI/URL': data.doi,
+                'Purpose of Study': data.purposeOfStudy,
+                'Purpose Pages': data.purposePages,
+                'Research Questions': data.researchQuestions,
+                'Questions Pages': data.questionsPages,
+                'Methodology': data.methodology,
+                'Methodology Pages': data.methodologyPages,
+                'Sample/Context': data.sampleContext,
+                'Sample Pages': data.samplePages,
+                'Key Findings': data.keyFindings,
+                'Findings Pages': data.findingsPages,
+                'Theoretical Framework': data.theoreticalFramework,
+                'Framework Pages': data.frameworkPages,
+                'Relevance to My Study': data.relevanceToStudy,
+                'Relevance Pages': data.relevancePages,
+                'Notes/Quotes': data.notesQuotes,
+                'Notes Pages': data.notesPages,
+                'Critiques/Limitations': data.critiquesLimitations,
+                'Critiques Pages': data.critiquesPages,
+                'Keywords/Tags': data.keywordsTags,
+                'Auto-Generated Citation': data.autoGeneratedCitation
+            };
+            
+            // Store locally as backup
+            let papers = JSON.parse(localStorage.getItem('mathewLibrary')) || [];
+            papers.push(sheetData);
+            localStorage.setItem('mathewLibrary', JSON.stringify(papers));
+            
+            // Background sync to Google Sheets
+            fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'data=' + encodeURIComponent(JSON.stringify(sheetData))
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.result === 'success') {
+                        showMessage('✅ Paper annotation saved successfully!', 'success');
+                        clearForm();
+                    } else {
+                        throw new Error(result.message || 'Sync error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Background sync error:', error);
+                    showMessage('✅ Paper annotation saved locally! (Background sync will retry)', 'success');
+                    clearForm();
+                })
+                .finally(() => {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitText.textContent = '📝 Add to Library';
+                    submitSpinner.style.display = 'none';
+                });
+        });
+        });
+
+        // Initialize the application
+        init();
+    </script>
+</body>
+</html>
