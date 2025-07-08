@@ -663,7 +663,7 @@
 
     <script>
         // Google Apps Script URL for background sync
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4YH5RMI5LmwL8Xi9-6c0ZNZeHLL-1OggLOnVy4QsMAWLXZ83WUNs7kiubcd0koUDddw/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAVOvC9Wt119u_CtzOgcsGXU8twHzjJxtjclMNhdQBk6hzBULyaGb_FKZwsrgGfpfeig/exec';
         
         // Initialize the application
         function init() {
@@ -859,18 +859,31 @@
                 },
                 body: 'data=' + encodeURIComponent(JSON.stringify(sheetData))
             })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Result:', result); // Debug log
-                if (result.result === 'success') {
-                    showMessage('✅ Paper annotation saved successfully!', 'success');
-                    clearForm();
-                } else {
-                    throw new Error(result.message || 'Unknown error');
+            .then(response => {
+                console.log('Response status:', response.status); // Debug log
+                console.log('Response headers:', response.headers); // Debug log
+                return response.text(); // Get text first to see raw response
+            })
+            .then(text => {
+                console.log('Raw response:', text); // Debug log
+                try {
+                    const result = JSON.parse(text);
+                    console.log('Parsed result:', result); // Debug log
+                    if (result.result === 'success') {
+                        showMessage('✅ Paper annotation saved successfully!', 'success');
+                        clearForm();
+                    } else {
+                        throw new Error(result.message || 'Unknown error');
+                    }
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError); // Debug log
+                    console.error('Raw text that failed to parse:', text); // Debug log
+                    throw new Error('Invalid response from server: ' + text.substring(0, 100));
                 }
             })
             .catch(error => {
                 console.error('Error details:', error); // Debug log
+                console.error('Error stack:', error.stack); // Debug log
                 showMessage('❌ Sorry, there was an error submitting your paper.\n\nPlease try again or contact support.\n\nError: ' + error.message, 'error');
             })
             .finally(() => {
